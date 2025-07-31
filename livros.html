@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#1e88e5">
+    <title>Livros Cadastrados</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 40px auto;
+            font-family: Arial, sans-serif;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .pesquisa-container {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .pesquisa-container input {
+            flex: 1;
+            padding: 8px;
+            font-size: 14px;
+        }
+
+        .pesquisa-container button {
+            padding: 8px 12px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        a.button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #f0f0f0;
+        }
+
+        .actions button {
+            margin-right: 5px;
+            padding: 4px 8px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .warning {
+            background-color: #ffc107;
+            border: none;
+        }
+
+        .danger {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="pesquisa-container">
+        <input type="text" id="campoPesquisa" onkeyup="pesquisarLivro()" placeholder="Pesquisar por título..."
+            style="width: 300px; padding: 8px; font-size: 16px;">
+        <button onclick="pesquisarLivro()">🔍 Pesquisar</button>
+    </div>
+
+    <h1>📚 Livros Cadastrados</h1>
+    <a href="index.html" class="button">➕ Cadastrar novo livro</a>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Ano</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaLivros"></tbody>
+    </table>
+
+    <script>
+        function obterLivros() {
+            return JSON.parse(localStorage.getItem("livros")) || [];
+        }
+
+        function salvarLivros(livros) {
+            localStorage.setItem("livros", JSON.stringify(livros));
+        }
+
+        function carregarLivros() {
+            const livros = obterLivros();
+            const tabela = document.getElementById('tabelaLivros');
+            tabela.innerHTML = '';
+
+            livros.forEach((livro, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${livro.titulo}</td>
+                    <td>${livro.autor}</td>
+                    <td>${livro.editora}</td>
+                    <td>${livro.ano}</td>
+                    <td>${livro.quantidade}</td>
+                    <td class="actions">
+                        <button class="danger" onclick="deletarLivro(${index})">🗑️</button>
+                    </td>
+                `;
+                tabela.appendChild(tr);
+            });
+        }
+
+        function editarLivro(index) {
+            const livros = obterLivros();
+            const livro = livros[index];
+            document.getElementById('titulo').value = livro.titulo;
+            document.getElementById('autor').value = livro.autor;
+            document.getElementById('editora').value = livro.editora;
+            document.getElementById('ano').value = livro.ano;
+            document.getElementById('quantidade').value = livro.quantidade;
+
+            // Remove o livro da lista para evitar duplicatas
+            livros.splice(index, 1);
+            salvarLivros(livros);
+            carregarLivros();
+        }
+
+        function deletarLivro(index) {
+            if (confirm("Tem certeza que deseja deletar este livro?")) {
+                const livros = obterLivros();
+                livros.splice(index, 1);
+                salvarLivros(livros);
+                carregarLivros();
+            }
+        }
+
+        function pesquisarLivro() {
+            const termo = document.getElementById("campoPesquisa").value.toLowerCase();
+            const linhas = document.querySelectorAll("#tabelaLivros tr");
+
+            linhas.forEach(linha => {
+                const titulo = linha.querySelector("td")?.textContent?.toLowerCase() || "";
+                linha.style.display = titulo.includes(termo) ? "" : "none";
+            });
+        }
+
+
+        document.addEventListener("DOMContentLoaded", carregarLivros);
+    </script>
+</body>
+
+</html>

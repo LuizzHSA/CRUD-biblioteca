@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#6200ee">
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('/service-worker.js')
+                .then(reg => console.log('Service Worker registrado:', reg.scope))
+                .catch(err => console.error('Erro ao registrar Service Worker:', err));
+        }
+    </script>
+    <title>Cadastro de Livros</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 30px;
+        }
+
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        a {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .mensagem {
+            background-color: #d4edda;
+            color: #155724;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+            margin-top: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📚 Cadastrar Livro</h1>
+        <a href="livros.html">Ver Livros Cadastrados</a>
+
+        <form id="formLivro">
+            <input type="text" id="titulo" placeholder="Título" required />
+            <input type="text" id="autor" placeholder="Autor" required />
+            <input type="text" id="editora" placeholder="Editora" />
+            <input type="number" id="ano" placeholder="Ano" />
+            <input type="number" id="quantidade" placeholder="Quantidade" />
+            <button type="submit">Salvar Livro</button>
+        </form>
+
+        <div id="mensagem" class="mensagem"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('formLivro');
+        const mensagem = document.getElementById('mensagem');
+
+        function obterLivros() {
+            return JSON.parse(localStorage.getItem("livros")) || [];
+        }
+
+        function salvarLivros(livros) {
+            localStorage.setItem("livros", JSON.stringify(livros));
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const livro = {
+                titulo: document.getElementById('titulo').value,
+                autor: document.getElementById('autor').value,
+                editora: document.getElementById('editora').value,
+                ano: document.getElementById('ano').value,
+                quantidade: document.getElementById('quantidade').value
+            };
+
+            const livros = obterLivros();
+            livros.push(livro);
+            salvarLivros(livros);
+
+            mensagem.textContent = '✅ Livro cadastrado com sucesso!';
+            mensagem.style.display = 'block';
+            form.reset();
+
+            setTimeout(() => {
+                mensagem.style.display = 'none';
+            }, 3000);
+        });
+    </script>
+</body>
+
+</html>
