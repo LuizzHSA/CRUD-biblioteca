@@ -16,33 +16,6 @@ Este projeto é uma aplicação web simples feita com **HTML**, **CSS** e **Java
 - JavaScript (puro) — Lógica de pesquisa em tempo real
 
 
-📌 TODO (Próximas melhorias)
- Validação de campos no formulário
-
- Responsividade para dispositivos móveis
-
- Modal para editar livros em vez de redirecionar
-
- Confirmação antes de excluir um item
-
- Adicionar suporte à busca por autor ou ano.
-
-Implementar ordenação por colunas.
-
-Conectar com uma API de livros ou um banco de dados.
-
-Criar layout responsivo com Bootstrap ou TailwindCSS.
-
-
-👨‍💻 Autor
-
-Luiz Henrique Lopes de Sá
-📧 seniorlulu20@gmail.com
-🔗 https://www.linkedin.com/in/luizhsa/
-
-
-
-
 📄 Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
