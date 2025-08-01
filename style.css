@@ -14,7 +14,6 @@ header {
 @media (max-width: 700px) {
     .container {
         max-width: 98%;
-        ;
         padding: 1rem;
     }
 
