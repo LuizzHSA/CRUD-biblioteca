@@ -16,15 +16,6 @@ Este projeto é uma aplicação web simples feita com **HTML**, **CSS** e **Java
 - JavaScript (puro) — Lógica de pesquisa em tempo real
 
 
-👨‍💻 Autor
-
-Luiz Henrique Lopes de Sá
-📧 seniorlulu20@gmail.com
-🔗 https://www.linkedin.com/in/luizhsa/
-
-
-
-
 📄 Licença
 
 Este projeto está licenciado sob a [MIT License](LICENSE).
