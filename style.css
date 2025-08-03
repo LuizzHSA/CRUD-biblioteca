@@ -75,3 +75,29 @@ form#formLivro button {
     width: 100%;
     margin-bottom: 2rem;
 }
+
+.container-livros {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+a.btn-cadastro {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    /* Centraliza horizontalmente */
+    display: block;
+}

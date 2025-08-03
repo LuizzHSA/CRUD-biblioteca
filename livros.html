@@ -84,16 +84,16 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="pesquisa-container">
-            <input type="text" id="campoPesquisa" onkeyup="pesquisarLivro()" placeholder="Pesquisar por título..."
-                style="width: 300px; padding: 8px; font-size: 16px;">
-            <button onclick="pesquisarLivro()">🔍 Pesquisar</button>
-        </div>
+    <div class="pesquisa-container">
+        <input type="text" id="campoPesquisa" onkeyup="pesquisarLivro()" placeholder="Pesquisar por título..."
+            style="width: 300px; padding: 8px; font-size: 16px;">
+        <button onclick="pesquisarLivro()">🔍 Pesquisar</button>
+    </div>
 
-        <h1>📚 Livros Cadastrados</h1>
-        <a href="index.html" class="button">➕ Cadastrar novo livro</a>
+    <h1>📚 Livros Cadastrados</h1>
+    <a href="index.html" class="btn-cadastro">➕ Cadastrar novo livro</a>
 
+    <div class="container-livros">
         <table>
             <thead>
                 <tr>
@@ -108,6 +108,7 @@
             <tbody id="tabelaLivros"></tbody>
         </table>
     </div>
+
     <script>
         function obterLivros() {
             return JSON.parse(localStorage.getItem("livros")) || [];
