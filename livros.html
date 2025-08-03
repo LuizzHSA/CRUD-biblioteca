@@ -93,21 +93,20 @@
     <h1>📚 Livros Cadastrados</h1>
     <a href="index.html" class="btn-cadastro">➕ Cadastrar novo livro</a>
 
-    <div class="container-livros">
-        <table>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Editora</th>
-                    <th>Ano</th>
-                    <th>Quantidade</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody id="tabelaLivros"></tbody>
-        </table>
-    </div>
+    <table class="tabela-centralizada">
+        <thead>
+            <tr>
+                <th>Título</th>
+                <th>Autor</th>
+                <th>Editora</th>
+                <th>Ano</th>
+                <th>Quantidade</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody id="tabelaLivros"></tbody>
+    </table>
+
 
     <script>
         function obterLivros() {
