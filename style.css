@@ -109,3 +109,54 @@ a.btn-cadastro {
     width: 100%;
     max-width: 800px;
 }
+
+@media (max-width: 700px) {
+
+    .tabela-livros,
+    .tabela-livros thead,
+    .tabela-livros tbody,
+    .tabela-livros th,
+    .tabela-livros td,
+    .tabela-livros tr {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-livros thead tr {
+        display: none;
+        /* Esconde o cabeçalho */
+    }
+
+    .tabela-livros tr {
+        margin-bottom: 1.5rem;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background: #fff;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+        padding: 1rem;
+    }
+
+    .tabela-livros td {
+        position: relative;
+        padding-left: 50%;
+        min-height: 40px;
+        border: none;
+        border-bottom: 1px solid #eee;
+        text-align: left;
+    }
+
+    .tabela-livros td:before {
+        position: absolute;
+        top: 0;
+        left: 1rem;
+        width: 45%;
+        white-space: nowrap;
+        font-weight: bold;
+        color: #333;
+        content: attr(data-label);
+    }
+
+    .tabela-livros td:last-child {
+        border-bottom: none;
+    }
+}
