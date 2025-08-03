@@ -87,9 +87,9 @@
 
 <body>
     <div class="container">
-        <h1>Cadastrar livros</h1>
-
+        <h1>Biblioteca Virual</h1>
         <form id="formLivro">
+            <h3>Cadastrar livro</h3>
             <input type="text" id="titulo" placeholder="Título" required />
             <input type="text" id="autor" placeholder="Autor" required />
             <input type="text" id="editora" placeholder="Editora" />
@@ -98,9 +98,8 @@
             <button type="submit">Salvar Livro</button>
             <button type="button" id="btnVerLivros" class="btn-ver-livros">Ver Livros Cadastrados</button>
         </form>
-
-        <div id="mensagem" class="mensagem"></div>
     </div>
+    <div id="mensagem" class="mensagem"></div>
 
     <script>
         const form = document.getElementById('formLivro');
